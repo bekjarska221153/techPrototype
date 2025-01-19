@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h2>Листа на издавачи</h2>
+    <div class="filters">
+        <label for="issuerCode">Шифра:</label>
+        <input type="text" id="issuerCode" placeholder="Внесете шифра">
+        <label for="dateFrom">Датум од:</label>
+        <input type="date" id="dateFrom">
+        <label for="dateTo">Датум до:</label>
+        <input type="date" id="dateTo">
+        <button type="submit">Филтрирај</button>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Издавач</th>
+            <th>Датум</th>
+            <th>Последна трансакција</th>
+            <th>Максимум</th>
+            <th>Минимум</th>
+            <th>Просечна Цена</th>
+            <th>% Промет</th>
+            <th>Квантитет</th>
+        </tr>
+        </thead>
+         <tbody>
+                {% if data %}
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row['Issuer'] }}</td>
+                        <td>{{ row['Date'] }}</td>
+                        <td>{{ row['Last Transaction'] }}</td>
+                        <td>{{ row['Max'] }}</td>
+                        <td>{{ row['Min'] }}</td>
+                        <td>{{ row['Average Price'] }}</td>
+                        <td>{{ row['% Change'] }}</td>
+                        <td>{{ row['Quantity'] }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="8">Нема податоци</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+    </table>
+</main>
+<script src="static/script.js"></script>
+</body>
+</html>
+{% endblock %}
+
